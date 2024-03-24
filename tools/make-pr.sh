@@ -34,12 +34,12 @@ generate_log() {
         git clone https://github.com/kopia/htmlui.git $htmlui_tmp
     fi
 
-    echo "## Changes"
+    echo "## Changes $htmlui_old_hash..$htmlui_new_hash"
 
     (cd $htmlui_tmp && git fetch && git log --pretty=format:"* https://github.com/kopia/htmlui/commit/%h %an %s" --no-patch $htmlui_old_hash..$htmlui_new_hash | sed -r 's@ [(]#.*$@@g')
 }
 
-generate_log $htmlui_old_hash $htmlui_new_hashg > /tmp/pr-body.txt
+generate_log $htmlui_old_hash $htmlui_new_hash > /tmp/pr-body.txt
 pr_title="feat(ui): upgraded htmlui to the latest version"
 
 cd $kopia_tmp
