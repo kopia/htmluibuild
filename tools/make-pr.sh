@@ -20,9 +20,9 @@ echo htmlui_old_hash: $htmlui_old_hash
 htmlui_new_hash=$(git show $htmluibuild_new_hash | grep "HTMLUI update for" | cut -f 7 -d /)
 echo htmlui_new_hash: $htmlui_new_hash
 
-if [ "$htmlui_new_hash" == "" ]; then
-    echo Not a HTMLUI update commit, ignoring.
-    exit 0
+if [ $htmlui_new_hash == "" ]; then
+    echo Not a HTMLUI update commit, 
+    htmlui_new_hash="HEAD"
 fi
 
 generate_log() {
