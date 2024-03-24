@@ -20,7 +20,7 @@ jobs:
         go-version-file: 'go.mod'
         check-latest: true
       id: go
-    - name: Run Tests
+    - name: Make PR to kopia/kopia
       run: ./tools/make-pr.sh
       env:
         GH_TOKEN: ${{ secrets.MAKE_PR_GH_TOKEN }}
