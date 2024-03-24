@@ -37,8 +37,12 @@ generate_log() {
     echo "## Changes"
     echo
     echo "Compare: https://github.com/kopia/htmlui/compare/$htmlui_old_hash...$htmlui_new_hash"
+    echo
 
-    (cd $htmlui_tmp && git fetch && git log --pretty=format:"* https://github.com/kopia/htmlui/commit/%h %an %s" --no-patch $htmlui_old_hash..$htmlui_new_hash | sed -r 's@ [(]#.*$@@g')
+    (cd $htmlui_tmp && git fetch && git log --reverse --pretty=format:"* %ch https://github.com/kopia/htmlui/commit/%h %an %s" --no-patch $htmlui_old_hash..$htmlui_new_hash | sed -r 's@ [(]#.*$@@g')
+    echo
+    echo
+    echo "*This PR description was [auto-generated](https://github.com/kopia/htmluibuild/blob/main/.github/workflows/after-push.yaml) at $(date)*"
 }
 
 generate_log $htmlui_old_hash $htmlui_new_hash > /tmp/pr-body.txt
