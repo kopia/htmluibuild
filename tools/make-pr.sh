@@ -36,8 +36,8 @@ generate_log() {
 
     echo "## Changes $htmlui_old_hash..$htmlui_new_hash"
     echo
-    echo "Old: $htmlui_old_hash"
-    echo "New: $htmlui_new_hash"
+    echo "Old: https://github.com/kopia/htmlui/commit/$htmlui_old_hash"
+    echo "New: https://github.com/kopia/htmlui/commit/$htmlui_new_hash"
 
     (cd $htmlui_tmp && git fetch && git log --pretty=format:"* https://github.com/kopia/htmlui/commit/%h %an %s" --no-patch $htmlui_old_hash..$htmlui_new_hash | sed -r 's@ [(]#.*$@@g')
 }
