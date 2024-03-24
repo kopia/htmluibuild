@@ -49,7 +49,7 @@ go get github.com/kopia/htmluibuild@$htmluibuild_new_hash
 go mod tidy
 git add -A 
 git -c "user.name=Kopia Builder" -c "user.email=builder@kopia.io" commit -m "$pr_title"
-git push -u -f
+git push --set-upstream origin htmlui-update -f
 
 existing_pr=$(gh pr list -L 1 -l htmlui-update | cut -f 1)
 if [ "$existing_pr" == "" ]; then
