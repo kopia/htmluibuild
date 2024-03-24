@@ -34,10 +34,9 @@ generate_log() {
         git clone https://github.com/kopia/htmlui.git $htmlui_tmp
     fi
 
-    echo "## Changes $htmlui_old_hash..$htmlui_new_hash"
+    echo "## Changes"
     echo
-    echo "Old: https://github.com/kopia/htmlui/commit/$htmlui_old_hash"
-    echo "New: https://github.com/kopia/htmlui/commit/$htmlui_new_hash"
+    echo "Compare: https://github.com/kopia/htmlui/compare/$htmlui_old_hash...$htmlui_new_hash"
 
     (cd $htmlui_tmp && git fetch && git log --pretty=format:"* https://github.com/kopia/htmlui/commit/%h %an %s" --no-patch $htmlui_old_hash..$htmlui_new_hash | sed -r 's@ [(]#.*$@@g')
 }
