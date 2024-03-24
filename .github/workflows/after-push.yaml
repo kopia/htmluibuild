@@ -1,4 +1,4 @@
-name: Code Coverage
+name: After Push
 on:
   push:
     branches: [ main ]
@@ -22,3 +22,5 @@ jobs:
       id: go
     - name: Run Tests
       run: ./tools/make-pr.sh
+      env:
+        GH_TOKEN: ${{ secrets.MAKE_PR_GH_TOKEN }}
