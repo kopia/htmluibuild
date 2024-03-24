@@ -48,8 +48,7 @@ git checkout -B htmlui-update
 go get github.com/kopia/htmluibuild@$htmluibuild_new_hash
 go mod tidy
 git add -A 
-git -c "user.name=Kopia Builder" -c "user.email=builder@kopia.io" 
-git commit -m "$pr_title"
+git -c "user.name=Kopia Builder" -c "user.email=builder@kopia.io" commit -m "$pr_title"
 git push -u -f
 
 existing_pr=$(gh pr list -L 1 -l htmlui-update | cut -f 1)
